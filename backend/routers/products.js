@@ -5,7 +5,13 @@ const { Product } = require("../models/product");
 const mongoose = require("mongoose");
 // /api/v1/products
 router.get(`/`, async (req, res) => {
-  const productList = await Product.find().select("");
+  let filter = {};
+  if (req.query.categories) {
+     filter = {category : req.query.categories.split(",")};
+  }
+  const productList = await Product.find(filter).populate(
+    "category"
+  );
 
   if (!productList) {
     res.status(500).json({ success: false });
@@ -93,10 +99,10 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-router.get("/get/count", async (req, res) => {
-  const product = await Product.countDocuments((count) => count);
+router.get(`/get/count`, async (req, res) => {
+  const productCount = await Product.countDocuments();
 
-  if (!product) {
+  if (!productCount) {
     res.status(500).json({ success: false });
   }
   res.send({
@@ -104,8 +110,9 @@ router.get("/get/count", async (req, res) => {
   });
 });
 
-router.get("/get/featured", async (req, res) => {
-  const products = await Product.find({ isFeatured: true });
+router.get(`/get/featured/:count`, async (req, res) => {
+  const count = req.params.count ? req.params.count : 0;
+  const products = await Product.find({ isFeatured: true }).limit(+count);
 
   if (!products) {
     res.status(500).json({ success: false });
