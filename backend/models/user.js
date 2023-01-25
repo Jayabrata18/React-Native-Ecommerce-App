@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: true,
+    required: false,
   },
   isAdmin: {
     type: Boolean,
@@ -43,13 +43,13 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.virtual('id').get(function() {
+userSchema.virtual("id").get(function () {
   return this._id.toHexString();
 });
 
-userSchema.set('toJSON', {
-  virtuals:true,
-})
+userSchema.set("toJSON", {
+  virtuals: true,
+});
 
 exports.User = mongoose.model("User", userSchema);
 exports.userSchema = userSchema;

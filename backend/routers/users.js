@@ -1,10 +1,9 @@
+const { User } = require("../models/user");
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// /api/v1/products
 router.get(`/`, async (req, res) => {
   const userList = await User.find().select("-passwordHash");
 
@@ -148,4 +147,41 @@ router.get(`/get/count`, async (req, res) => {
   });
 });
 
+router.get(`/get/count`, async (req, res) => {
+  const userCount = await User.countDocuments((count) => count);
+
+  if (!userCount) {
+    res.status(500).json({ success: false });
+  }
+  res.send({ userCount: userCount });
+});
+
+router.delete("/:id", (req, res) => {
+  User.findByIdAndRemove(req.params.id)
+    .then((user) => {
+      if (user) {
+        return res
+          .status(200)
+          .json({ success: true, message: "the user was removed" });
+      } else {
+        return res
+          .status(404)
+          .json({ success: false, message: "the user not found" });
+      }
+    })
+    .catch((err) => {
+      return res.status(400).json({ success: false, error: err });
+    });
+});
+
 module.exports = router;
+// //{
+
+//     "email": "apcd@gmail.com",
+//     "password": "ruhbvghjkk"
+
+// // }
+// {
+//     "user": "apcd@gmail.com",
+//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2NmZjZjYWFmOWU5YTlmYmM0ZDM0NmYiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjc0NTczNTU0LCJleHAiOjE2NzQ2NTk5NTR9.Me7q3xgMaqS0vr2D0b4l7Rol7J4QWQcL1-c6BkESQsI"
+// }
