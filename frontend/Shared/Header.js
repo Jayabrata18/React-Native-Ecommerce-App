@@ -3,6 +3,7 @@ import {
   SafeAreaSafeAreaView,
   Text,
   SafeAreaView,
+  Image,
 } from 'react-native';
 import React from 'react';
 
@@ -25,6 +26,5 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     padding: 20,
-    marginTop: 80,
   },
 });

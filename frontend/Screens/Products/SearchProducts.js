@@ -1,12 +1,24 @@
-import { StyleSheet, View } from 'react-native'
-import React from 'react'
-import {Content, Left, Body, ListItem, Thumbnail, Text} from 'native-base'
+import {
+  StyleSheet,
+  View,
+  Content,
+  Dimensions,
+  Left,
+  Body,
+  ListItem,
+  Thumbnail,
+  Text,
+} from 'react-native';
+import React from 'react';
+// import {Content, Left, Body, ListItem, Thumbnail, Text} from 'native-base'
 
-const SearchProducts = (props) => {
-    const {productFiltered} = props;
+var {width} = Dimensions.get('window');
+
+const SearchProducts = props => {
+  const {productFiltered} = props;
   return (
-    <Content>
-      {productsFiltered.length > 0 ? (
+    <Content style={{width: width}}>
+      {productFiltered.length > 0 ? (
         productFiltered.map(item => (
           <ListItem
             // onPress={navigate}
@@ -21,6 +33,10 @@ const SearchProducts = (props) => {
                 }}
               />
             </Left>
+            <Body>
+              <Text>{item.name}</Text>
+              <Text note>{item.description}</Text>
+            </Body>
           </ListItem>
         ))
       ) : (
@@ -32,8 +48,12 @@ const SearchProducts = (props) => {
       )}
     </Content>
   );
-}
+};
 
-export default SearchProducts
-
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+export default SearchProducts;
