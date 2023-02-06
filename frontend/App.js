@@ -1,20 +1,23 @@
 // import {StatusBar} from 'react-native';
 import React from 'react';
 import {StyleSheet, Text, SafeAreaView,LogBox, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native'
+
+//Navigator
+import Main from './Navigator/Main'
 
 //screens
-import ProductContainer from './Screens/Products/ProductContainer';
 import Header from './Shared/Header';
 
 LogBox.ignoreAllLogs(true);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Header />
-      {/* <Text style={styles.text}>hi how are you</Text> */}
-      <ProductContainer />
-    </View>
+    <NavigationContainer>
+        <Header />
+        <Main/>
+        {/* <ProductContainer /> */}
+    </NavigationContainer>
   );
 }
 

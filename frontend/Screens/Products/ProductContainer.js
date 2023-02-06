@@ -9,6 +9,7 @@ import {
   Header,
   Input,
   Text,
+  ScrollView,
   Dimensions,
   FlatList,
 } from 'react-native';
@@ -16,9 +17,9 @@ import ProductList from './ProductList';
 import SearchProducts from './SearchProducts';
 import Banner from '../../Shared/Banner';
 import CategoryFilterd from './CategoryFilterd';
-import {ScrollView} from 'native-base';
+// import {} from 'native-base';
 
-var {height} = Dimensions.get('window')
+var {height} = Dimensions.get('window');
 
 const data = require('../../assets/data/products.json');
 const productsCategories = require('../../assets/data/categories.json');
@@ -51,7 +52,7 @@ const ProductContainer = props => {
     };
   }, []);
 
-  const SearchProducts = text => {
+  const searchedProducts = text => {
     setProductsFiltered(
       products.filter(i => i.name.toLowerCase().includes(text.toLowerCase())),
     );
@@ -84,13 +85,16 @@ const ProductContainer = props => {
           <Input
             placeholder="Search"
             onFocus={openList}
-            onChangeText={text => SearchProducts(text)}
+            onChangeText={text => searchedProducts(text)}
           />
           {focus == true ? <Icon onPress={onblur} name="ios-close" /> : null}
         </Item>
       </Header>
       {focus == true ? (
-        <SearchProducts productsFiltered={productsFiltered} />
+        <SearchProducts
+          navigation={props.navigation}
+          productsFiltered={productsFiltered}
+        />
       ) : (
         <ScrollView>
           <View>
@@ -109,11 +113,17 @@ const ProductContainer = props => {
             {productsCtg.length > 0 ? (
               <View style={styles.listContainer}>
                 {productsCtg.map(item => {
-                  return <ProductList key={item.id} item={item} />;
+                  return (
+                    <ProductList
+                      navigation={props.navigation}
+                      key={item.id}
+                      item={item}
+                    />
+                  );
                 })}
               </View>
             ) : (
-              <View style={[styles.center, {height:height/2}]}>
+              <View style={[styles.center, {height: height / 2}]}>
                 <Text>No products found</Text>
               </View>
             )}
@@ -137,10 +147,10 @@ const styles = StyleSheet.create({
     width: height,
     flex: 1,
   },
-  center:{
+  center: {
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 export default ProductContainer;

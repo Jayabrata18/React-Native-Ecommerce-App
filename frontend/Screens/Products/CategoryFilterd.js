@@ -1,6 +1,6 @@
+// import { ListItem } from 'native-base';
 import { View, Text,StyleSheet, TouchableOpacity, ScrollView, ListItem, Badge} from 'react-native'
 import React from 'react'
-import { ListItem } from 'native-base';
 
 const CategoryFilterd = (props) => {
   return (
