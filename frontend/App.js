@@ -3,6 +3,10 @@ import React from 'react';
 import {StyleSheet, Text, SafeAreaView,LogBox, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native'
 
+//redux
+import {Provider} from 'react-redux';
+import store from './Redux/Store';
+
 //Navigator
 import Main from './Navigator/Main'
 
@@ -13,25 +17,13 @@ LogBox.ignoreAllLogs(true);
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
         <Header />
-        <Main/>
+        <Main />
         {/* <ProductContainer /> */}
-    </NavigationContainer>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000000',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  // text: {
-  //   color: '#FFFFFF',
-  //   fontSize: '15px',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-});

@@ -31,6 +31,11 @@
     "react-native-svg": "^13.8.0",
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^9.2.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.2",
     "regjsparser": "^0.9.1"
   },
   "devDependencies": {
