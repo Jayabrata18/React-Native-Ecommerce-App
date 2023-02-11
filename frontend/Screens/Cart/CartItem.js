@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View, Left, Right, ListItem, Thumbnail,Body } from 'react-native'
-import React, {useState} from 'react'
-import { Thumbnail } from 'native-base';
+import {StyleSheet} from 'react-native';
+import {Text, Left, Right, ListItem, Thumbnail, Body} from 'native-base';
 
-const CartItem = (props) => {
-    const data = props.item.item.product 
-    const [quantity, setQuantity] = useState(props.item.item.quantity)
+import React, {useState} from 'react';
+// import { Thumbnail } from 'native-base';
+
+const CartItem = props => {
+  const data = props.item.item.product;
+  const [quantity, setQuantity] = useState(props.item.item.quantity);
   return (
     <ListItem style={styles.listItem} key={Math.random()} avatar>
       <Left>
@@ -26,10 +28,10 @@ const CartItem = (props) => {
       </Body>
     </ListItem>
   );
-}
+};
 
 const styles = StyleSheet.create({
-    listItem: {
+  listItem: {
     alignItems: 'center',
     backgroundColor: 'white',
     justifyContent: 'center',
@@ -37,9 +39,8 @@ const styles = StyleSheet.create({
   body: {
     margin: 10,
     alignItems: 'center',
-    flexDirection: 'row'
-  }  
+    flexDirection: 'row',
+  },
 });
 
-export default CartItem
-
+export default CartItem;

@@ -22,6 +22,7 @@
     "metro": "^0.73.2",
     "metro-bundler": "^0.22.1",
     "metro-transform-plugins": "^0.60.0",
+    "native-base": "^2.13.14",
     "node": "^19.0.0",
     "react": "18.2.0",
     "react-native": "0.71.1",
@@ -34,11 +35,11 @@
     "react-native-swiper": "^1.6.0",
     "react-native-tab-view": "^3.3.4",
     "react-native-vector-icons": "^9.2.0",
-    "react-redux": "^8.0.5",
-    "redux": "^4.2.1",
-    "redux-devtools-extension": "^2.13.9",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.2",
+    "redux-thunk": "^2.3.0",
     "regjsparser": "^0.9.1"
   },
   "devDependencies": {

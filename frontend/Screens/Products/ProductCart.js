@@ -1,9 +1,5 @@
 import {StyleSheet, Text, View, Dimensions, Image, Button} from 'react-native';
 import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from '../../Redux/Actions/cartActions';
-
-
 
 var {width} = Dimensions.get('window');
 
@@ -22,15 +18,12 @@ const ProductCart = props => {
       />
       <View style={styles.card} />
       <Text style={styles.title}>
-        {name.length > 15 ? name.substring(0, 15 - 3) + '...' : name}
+        {name && name.length > 15 ? name.substring(0, 15 - 3) + '...' : name}
       </Text>
       <Text style={styles.price}>${price}</Text>
-
       {countInStock > 0 ? (
         <View style={{marginBottom: 60}}>
-          <Button title={'Add'} color={'green'} onPress={() => {
-            props.addItemToCart(props)
-          }} />
+          <Button title={'Add'} color={'green'} />
         </View>
       ) : (
         <Text style={{marginTop: 20}}>Currently Unavailable</Text>
@@ -39,13 +32,7 @@ const ProductCart = props => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return{
-    addItemToCart: (product) => 
-      dispatch(actions.addToCart({quantity: 1, product}))
-  }
-}
-
+export default ProductCart;
 
 const styles = StyleSheet.create({
   container: {
@@ -58,19 +45,19 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignItems: 'center',
     elevation: 8,
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
   },
   image: {
     width: width / 2 - 20 - 10,
     height: width / 2 - 20 - 30,
-    backgroundColor: '#ffffff',
+    backgroundColor: 'transparent',
     position: 'absolute',
     top: -45,
   },
   card: {
     marginBottom: 10,
     height: width / 2 - 20 - 90,
-    backgroundColor: 'tansparent',
+    backgroundColor: 'transparent',
     width: width / 2 - 20 - 10,
   },
   title: {
@@ -84,4 +71,3 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-export default connect(null, mapDispatchToProps)(ProductCart);

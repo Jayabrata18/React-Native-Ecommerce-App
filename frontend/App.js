@@ -1,29 +1,25 @@
-// import {StatusBar} from 'react-native';
 import React from 'react';
-import {StyleSheet, Text, SafeAreaView,LogBox, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native'
-
-//redux
-import {Provider} from 'react-redux';
-import store from './Redux/Store';
-
-//Navigator
-import Main from './Navigator/Main'
-
-//screens
-import Header from './Shared/Header';
+import { StyleSheet, LogBox, View } from 'react-native';
 
 LogBox.ignoreAllLogs(true);
+//screens
+import ProductContainer from './Screens/Products/ProductContainer';
+import Header from './Share/Header';
+// import Header from './Shared/Header';
+
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Header />
-        <Main />
-        {/* <ProductContainer /> */}
-      </NavigationContainer>
-    </Provider>
+    <View style={styles.container}>
+      <Header/>
+      <ProductContainer/>
+    </View>
   );
 }
-
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#808080',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

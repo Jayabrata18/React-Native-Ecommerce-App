@@ -1,13 +1,7 @@
-import {
-  StyleSheet,
-  SafeAreaSafeAreaView,
-  Text,
-  SafeAreaView,
-  Image,
-} from 'react-native';
+import {StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
 import React from 'react';
 
-export default function Header() {
+const Header = () => {
   return (
     <SafeAreaView style={styles.header}>
       <Image
@@ -17,7 +11,7 @@ export default function Header() {
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -26,5 +20,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     padding: 20,
+    
   },
 });
+
+export default Header;

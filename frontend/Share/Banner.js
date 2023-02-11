@@ -1,7 +1,13 @@
-import { View, Text, Image, StyleSheet, Dimensions, ScrollView } from 'react-native'
-import React, {useState} from 'react'
-import Swiper from 'react-native-swiper/src'
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  ScrollView,
+} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import Swiper from 'react-native-swiper/src';
 
 var {width} = Dimensions.get('window');
 
