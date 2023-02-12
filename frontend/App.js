@@ -1,25 +1,34 @@
-import React from 'react';
-import { StyleSheet, LogBox, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { LogBox } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
+
+// Redux
+import { Provider } from "react-redux";
+import store from "./Redux/store";
+
+// Context API
+import Auth from "./Context/store/Auth";
+
+// Navigatiors
+import Main from "./Navigators/Main";
+
+// Screens
+import Header from "./Shared/Header";
 
 LogBox.ignoreAllLogs(true);
-//screens
-import ProductContainer from './Screens/Products/ProductContainer';
-import Header from './Share/Header';
-// import Header from './Shared/Header';
-
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Header/>
-      <ProductContainer/>
-    </View>
+    <Auth>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Header />
+          <Main />
+          <Toast ref={(ref) => Toast.setRef(ref)} />
+        </NavigationContainer>
+      </Provider>
+    </Auth>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#808080',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
